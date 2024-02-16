@@ -2,6 +2,25 @@
 The best Anime API yopu will find
 
 # Planning
+
+# Folder structure
+
+- controllers
+  - anime_name
+  - character_name
+  - character_info
+- models
+  - anime_name
+  - character_name
+  - character_info
+- seed
+  - mainAnimeInfo
+  - will have all three inside this. Mainly using Atlas for seeding
+- server.js 
+- index.html - not sure if I will need more than 1 file or not.
+- style.css
+- script.js
+
 ## ERD
 A 1 to many model where the Anime name is the grand parent to the Anime Character and the charachter details is the child to the anime character.
 
