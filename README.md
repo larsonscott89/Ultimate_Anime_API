@@ -4,6 +4,9 @@ The best Anime API yopu will find
 # Planning
 ## ERD
 A 1 to many model where the Anime name is the grand parent to the Anime Character and the charachter details is the child to the anime character.
+
+/Users/larson.scott.96/Desktop/Screenshot 2024-02-13 at 11.51.25 AM.png
+
 # models
 - Anime Name
   - name
