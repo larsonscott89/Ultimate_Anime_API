@@ -5,7 +5,7 @@ The best Anime API yopu will find
 ## ERD
 A 1 to many model where the Anime name is the grand parent to the Anime Character and the charachter details is the child to the anime character.
 
-![alt text](https://file%2B.vscode-resource.vscode-cdn.net/Users/larson.scott.96/Desktop/Screenshot%202024-02-13%20at%2011.51.25%E2%80%AFAM.png?version%3D1708090884699)
+https://file+.vscode-resource.vscode-cdn.net/Users/larson.scott.96/Desktop/Screenshot%202024-02-13%20at%2011.51.25%E2%80%AFAM.png?version%3D1708090884699
 
 # models
 - Anime Name
