@@ -20,7 +20,8 @@ https://file+.vscode-resource.vscode-cdn.net/Users/larson.scott.96/Desktop/Scree
   - jap_voice
   - summary
   - GIF
-I can expand on the character details after a few tests to make sure the app runs the way I want it to.
+
+- I can expand on the character details after a few tests to make sure the app runs the way I want it to.
 
 # Seeding
 ## Using Atlas to seed.
