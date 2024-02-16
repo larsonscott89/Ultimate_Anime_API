@@ -6,12 +6,12 @@ The best Anime API yopu will find
 # Folder structure
 
 - controllers
+  - genre
   - anime_name
-  - character_name
   - character_info
 - models
+  - genre
   - anime_name
-  - character_name
   - character_info
 - seed
   - mainAnimeInfo
