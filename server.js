@@ -15,12 +15,17 @@ app.use(express.json())
 app.use(cors())
 app.use(logger('dev'))
 
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
 
-app.get('/genre', genreController.getGenre)
-app.get('/character', characterInfoController.getCharacter)
-app.get('/anime', animeNameController.getAnime)
-app.get('/genre/name/:name', genreController.getGenreDetails)
+app.get('/api/genre', genreController.getGenre);
+app.get('/api/genre/:name', genreController.getGenreDetails);
+
+app.get('/api/anime', animeNameController.getAnime); 
+app.get('/api/characters', characterInfoController.getCharacterInfo)
+app.get('/api/anime/:name/characters', animeNameController.getCharactersByAnime)
+app.get('/api/genre/:name', genreController.getAnimeByGenre)
+
+app.delete('/api/genre/:id', genreController.deleteGenre)
+

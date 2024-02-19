@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Genre = require('../models/genre')
 const AnimeName = require('../models/animeName')
 const CharacterInfo = require('../models/characterInfo')
@@ -11,8 +12,22 @@ const getAnime = async (req, res) => {
   }
 }
 
+const getCharactersByAnime = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    // Perform database query to fetch characters for the specified anime
+    const characters = await CharacterInfo.find({ animeName_id: name });
+    res.json(characters);
+  } catch (error) {
+    console.error('Error fetching characters by anime:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   getAnime,
+  getCharactersByAnime,
   // createAnime,
   // updateAnime,
   // deleteAnime

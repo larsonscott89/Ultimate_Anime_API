@@ -2,17 +2,24 @@ const Genre = require('../models/genre')
 const AnimeName = require('../models/animeName')
 const CharacterInfo = require('../models/characterInfo')
 
-const getCharacter = async (req, res) => {
+const getCharacterInfo = async (req, res) => {
   try {
-    const character = await CharacterInfo.find();
-    res.json(character)
+    const { name } = req.params;
+    const character = await CharacterInfo.findOne({ name }).populate('animeName_id');
+
+    if (!character) {
+      return res.status(404).json({ message: 'Character not found' });
+    }
+
+    res.json(character);
   } catch (error) {
-    return res.status(500).send(error.message)
+    console.error('Error fetching character info:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-}
+};
 
 module.exports = {
-  getCharacter,
+  getCharacterInfo,
   // createCharacter,
   // updateCharacter,
   // deleteCharacter
