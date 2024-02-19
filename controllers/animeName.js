@@ -16,8 +16,7 @@ const getCharactersByAnime = async (req, res) => {
   try {
     const { name } = req.params;
 
-    // Perform database query to fetch characters for the specified anime
-    const characters = await CharacterInfo.find({ animeName_id: name });
+    const characters = await CharacterInfo.find({});
     res.json(characters);
   } catch (error) {
     console.error('Error fetching characters by anime:', error);

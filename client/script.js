@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const genreButton = document.createElement('button');
         genreButton.textContent = genre.type;
         genreButton.addEventListener('click', () => {
-
           fetchAnimeByGenre(genre.type);
         });
         genreTypes.appendChild(genreButton);
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchTerm = searchBar.value.trim();
 
     if (searchTerm) {
-
       fetchAnimeOrCharacter(searchTerm);
     }
   });
@@ -38,14 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(response => {
         const genreDetails = response.data;
 
-
         genreTypes.innerHTML = '';
 
         genreDetails.anime.forEach(animeName => {
           const animeButton = document.createElement('button');
           animeButton.textContent = animeName;
           animeButton.addEventListener('click', () => {
-
             fetchCharactersByAnime(animeName);
           });
           genreTypes.appendChild(animeButton);
@@ -60,15 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const characters = response.data;
 
         genreTypes.innerHTML = '';
-    
-        console.log('Characters:', characters); 
 
         characters.forEach(character => {
           const characterButton = document.createElement('button');
-          characterButton.textContent = character;
+          characterButton.textContent = character.name;
           characterButton.addEventListener('click', () => {
-           
-            fetchCharacterInfo(character);
+            fetchCharacterInfo(character._id);
           });
           genreTypes.appendChild(characterButton);
         });
@@ -80,16 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.get(`http://localhost:3001/api/characters/${encodeURIComponent(characterName)}`)
       .then(response => {
         const characterInfo = response.data;
-  
+
         genreTypes.innerHTML = '';
-  
+
         const characterContainer = document.createElement('div');
-  
+
         characterContainer.innerHTML = `
           <h2>${characterInfo.name}</h2>
           <img src="${characterInfo.characterGif}" alt="Character Gif">
         `;
-  
+
         genreTypes.appendChild(characterContainer);
       })
       .catch(error => console.error(`Error fetching information for ${characterName} character:`, error));

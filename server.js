@@ -20,11 +20,17 @@ app.listen(PORT, () => {
 })
 
 app.get('/api/genre', genreController.getGenre);
+
 app.get('/api/genre/:name', genreController.getGenreDetails);
 
-app.get('/api/anime', animeNameController.getAnime); 
+app.get('/api/anime', animeNameController.getAnime);
+
 app.get('/api/characters', characterInfoController.getCharacterInfo)
+
+app.get('/api/characters', characterInfoController.getCharacter)
+
 app.get('/api/anime/:name/characters', animeNameController.getCharactersByAnime)
+
 app.get('/api/genre/:name', genreController.getAnimeByGenre)
 
 app.delete('/api/genre/:id', genreController.deleteGenre)
