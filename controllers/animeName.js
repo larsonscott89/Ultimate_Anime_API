@@ -16,13 +16,19 @@ const getCharactersByAnime = async (req, res) => {
   try {
     const { name } = req.params;
 
-    const characters = await CharacterInfo.find({});
+    const anime = await AnimeName.findOne({ name });
+
+    if (!anime) {
+      return res.status(404).json({ message: 'Anime not found' });
+    }
+
+    const characters = await CharacterInfo.find({ animeName_id: anime._id });
     res.json(characters);
   } catch (error) {
     console.error('Error fetching characters by anime:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-};
+}
 
 module.exports = {
   getAnime,

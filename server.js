@@ -25,13 +25,18 @@ app.get('/api/genre/:name', genreController.getGenreDetails);
 
 app.get('/api/anime', animeNameController.getAnime);
 
-app.get('/api/characters', characterInfoController.getCharacterInfo)
+app.get('/api/characters/:id', characterInfoController.getCharacterInfo)
 
 app.get('/api/characters', characterInfoController.getCharacter)
 
 app.get('/api/anime/:name/characters', animeNameController.getCharactersByAnime)
 
+// app.get('/api/anime/:name/characters', characterInfoController.getCharactersInfo)
+
 app.get('/api/genre/:name', genreController.getAnimeByGenre)
 
 app.delete('/api/genre/:id', genreController.deleteGenre)
 
+app.delete('/api/characters/:id', characterInfoController.deleteCharacter)
+
+app.get('/characters/:id', characterInfoController.getCharacterInfo)

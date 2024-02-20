@@ -54,13 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.get(`http://localhost:3001/api/anime/${encodeURIComponent(animeName)}/characters`)
       .then(response => {
         const characters = response.data;
-
+  
         genreTypes.innerHTML = '';
-
+  
         characters.forEach(character => {
           const characterButton = document.createElement('button');
           characterButton.textContent = character.name;
           characterButton.addEventListener('click', () => {
+            console.log('Fetching character info for ID:', character._id);
             fetchCharacterInfo(character._id);
           });
           genreTypes.appendChild(characterButton);
@@ -68,23 +69,30 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error(`Error fetching characters for ${animeName} anime:`, error));
   }
-
-  function fetchCharacterInfo(characterName) {
-    axios.get(`http://localhost:3001/api/characters/${encodeURIComponent(characterName)}`)
+  
+  function fetchCharacterInfo(characterId) {
+    console.log('Fetching character info for ID:', characterId);
+    axios.get(`http://localhost:3001/api/characters/${characterId}`)
       .then(response => {
+        console.log('Character info response:', response.data);
+  
         const characterInfo = response.data;
-
         genreTypes.innerHTML = '';
-
+  
         const characterContainer = document.createElement('div');
-
         characterContainer.innerHTML = `
-          <h2>${characterInfo.name}</h2>
+          <h1>${characterInfo.name}</h1>
+          <h3>${characterInfo.summary}</h3>
+          <h3>${characterInfo.engVoiceActor}</h3>
+          <h3>${characterInfo.japVoiceActor}</h3>
           <img src="${characterInfo.characterGif}" alt="Character Gif">
         `;
-
+  
         genreTypes.appendChild(characterContainer);
       })
-      .catch(error => console.error(`Error fetching information for ${characterName} character:`, error));
+      .catch(error => {
+        console.error(`Error fetching information for ${characterId} character:`, error);
+        console.log('Character info error response:', error.response.data);
+      });
   }
 });
