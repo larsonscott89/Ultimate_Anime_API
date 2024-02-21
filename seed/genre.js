@@ -8,14 +8,26 @@ db.on('error', (error) => {
 const main = async () => {
   const genre = [
     {
-      type: 'Action'
+      type: 'Comedy'
     },
     {
-      type: 'Adventure'
+      type: 'Drama'
     },
     {
-      type: 'Supernatural'
-    }
+      type: 'Fantasy'
+    },
+    {
+      type: 'Sci-Fi'
+    },
+    {
+      type: 'Shonen'
+    },
+    {
+      type: 'Thriller'
+    },
+    {
+      type: 'Shojo'
+    },
   ]
   await Genre.insertMany(genre)
   console.log('Created genres')

@@ -30,10 +30,23 @@ const getCharactersByAnime = async (req, res) => {
   }
 }
 
+const deleteAnime = async (req, res) => {
+  try {
+      const { id } = req.params;
+      const deleted = await AnimeName.findByIdAndDelete(id)
+      if (deleted) {
+          return res.status(200).send("Ingredient deleted");
+      }
+      throw new Error("Ingredient not found");
+  } catch (error) {
+      return res.status(500).send(error.message);
+  }
+}
+
 module.exports = {
   getAnime,
   getCharactersByAnime,
   // createAnime,
   // updateAnime,
-  // deleteAnime
+  deleteAnime
 }

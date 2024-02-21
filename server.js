@@ -40,3 +40,5 @@ app.delete('/api/genre/:id', genreController.deleteGenre)
 app.delete('/api/characters/:id', characterInfoController.deleteCharacter)
 
 app.get('/characters/:id', characterInfoController.getCharacterInfo)
+
+app.delete('/anime/:id', animeNameController.deleteAnime)
