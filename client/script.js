@@ -39,13 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
         genreTypes.innerHTML = '';
 
         genreDetails.anime.forEach(animeName => {
+          const animeContainer = document.createElement('div')
+          animeContainer.classList.add('anime-container')
+        
           const animeImg = document.createElement('img');
-          animeImg.src = getAnimePhoto(animeName); // Add a function to get anime photo URL
+          animeImg.src = getAnimePhoto(animeName);
+          animeImg.classList.add('anime-photo')
           animeImg.alt = animeName;
-          animeImg.addEventListener('click', () => {
+        
+          const animeNameText = document.createElement('p');
+          animeNameText.textContent = animeName;
+          animeNameText.classList.add('anime-name')
+        
+          animeContainer.appendChild(animeImg);
+          animeContainer.appendChild(animeNameText);
+        
+          animeContainer.addEventListener('click', () => {
             fetchCharactersByAnime(animeName);
           });
-          genreTypes.appendChild(animeImg);
+        
+          genreTypes.appendChild(animeContainer);
         });
       })
       .catch(error => console.error(`Error fetching anime for ${genreName} genre:`, error));
@@ -55,18 +68,28 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.get(`http://localhost:3001/api/anime/${encodeURIComponent(animeName)}/characters`)
       .then(response => {
         const characters = response.data;
-
+  
         genreTypes.innerHTML = '';
-
+  
         characters.forEach(character => {
+          const characterContainer = document.createElement('div');
+  
           const characterImg = document.createElement('img');
-          characterImg.src = character.characterPhoto;
+          characterImg.src = character.photo;
           characterImg.alt = character.name;
-          characterImg.addEventListener('click', () => {
+  
+          const characterNameText = document.createElement('p');
+          characterNameText.textContent = character.name;
+  
+          characterContainer.appendChild(characterImg);
+          characterContainer.appendChild(characterNameText);
+  
+          characterContainer.addEventListener('click', () => {
             console.log('Fetching character info for ID:', character._id);
             fetchCharacterInfo(character._id);
           });
-          genreTypes.appendChild(characterImg);
+  
+          genreTypes.appendChild(characterContainer);
         });
       })
       .catch(error => console.error(`Error fetching characters for ${animeName} anime:`, error));
@@ -83,10 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const characterContainer = document.createElement('div');
         characterContainer.innerHTML = `
-          <h1>${characterInfo.name}</h1>
-          <h3>${characterInfo.summary}</h3>
-          <h3>${characterInfo.engVoiceActor}</h3>
-          <h3>${characterInfo.japVoiceActor}</h3>
+          <h1>Name</h1>
+          <p>${characterInfo.name}</p>
+          <h3>Summary</h3>
+          <p>${characterInfo.summary}</p>
+          <h3>English Voice Actor</h3>
+          <p>${characterInfo.engVoiceActor}</p>
+          <h3>Japanese Voice Actor</h3>
+          <p>${characterInfo.japVoiceActor}</p>
           <img src="${characterInfo.characterGif}" alt="Character Gif">
         `;
 
@@ -105,9 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'Black Clover': 'https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71ie87aqvLL._AC_SY879_.jpg',
       'Jujutsu Kaisen': 'https://p325k7wa.twic.pics/high/jujutsu-kaisen/jujutsu-kaisen-cursed-clash/00-page-setup/JJK-header-mobile2.jpg',
       'One Piece': 'https://static.wikia.nocookie.net/onepiece/images/6/6b/Slide_1_preview.png',
-      'Shangri-La Frontier': 'http://cdn.kodansha.us/statics/Products/3771_22942605-0ea3-4551-9fd4-ef661c10ae63.jpg',
+      'Shangri-La Frontier': 'https://static.wikia.nocookie.net/shangrila-frontier/images/3/3e/Shangri-La_Frontier_Anime_Key_Visual_5.png',
       'The Rising of the Shield Hero': 'http://cdn.kobo.com/book-images/6b56546b-befc-4665-a5bd-a313a76449ad/353/569/90/False/the-rising-of-the-shield-hero-volume-20.jpg',
-      'Berserk of Gluttony': 'http://book-pic.webnovel.com/bookcover/19753836505140705?imageMogr2/thumbnail/150&imageId=1617582568560.png',
+      'Berserk of Gluttony': 'https://static.wikia.nocookie.net/berserkofgluttony/images/4/4f/BoG_Cover_English_6.jpg',
       'Dr. STONE': 'http://static.wikia.nocookie.net/dr-stone/images/3/35/Dr._Stone_Stone_Wars_Key_Visual_4.png',
       'Goblin Slayer': 'http://images.hive.blog/p/NTy4GV6ooFRmaCXZ8UYgPhoud1kjiNX8QokLEZtbBKLuLWQ9yt7K3o4EsMHxweGuomeofBNSZzEaJqu8tKeujpLTyX4TY56979vzbizZKqCfsMKPDBACtnCZjLeZ1QrmzAdFYDr8qUBKvrjoaZTDgh8LimW5hVzHCpxd7hNv?format=match&mode=fit',
       'My Hero Academia': 'http://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2018/10/12213851/My-Hero-Academia-1536x864.png',
@@ -122,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Fairy Tail': 'http://static.wikia.nocookie.net/vsbattles/images/e/e7/Fairy_Tail_New_Banner.jpg',
       'Mashle: Magic and Muscles': 'http://static.wikia.nocookie.net/mashle/images/0/0f/Volume_01.png',
       'Spy x Family': 'http://static.wikia.nocookie.net/spy-x-family9171/images/7/76/SPY_x_FAMILY_Key_Visual_1.png',
-      'Mr. Villan\'s Day Off': 'http://upload.wikimedia.org/wikipedia/en/thumb/3/39/Mr._Villain%27s_Day_Off_vol._1_cover.jpg',
+      'Mr. Villan\'s Day Off': 'https://upload.wikimedia.org/wikipedia/en/3/39/Mr._Villain%27s_Day_Off_vol._1_cover.jpg',
       'Bucchigiri?!': 'http://static.wikia.nocookie.net/dubbing9585/images/4/42/Bucchigiri.png',
       'Assassination Classroom': 'http://static.miraheze.org/allthetropeswiki/thumb/d/d3/Assassination_Clasroom_-_2015_anime_poster_-_AllTheTropes.jpg/231px-Assassination_Clasroom_-_2015_anime_poster_-_AllTheTropes.jpg',
       'The Great Cleric': 'http://static.wikia.nocookie.net/the-great-cleric/images/b/bb/The_Great_Cleric_LN6_Cover.png',
@@ -161,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Saga of Tanya the Evil': 'http://static.wikia.nocookie.net/enanimanga/images/4/43/Youjo_Senki_Light_Novel.jpg',
       'Battle Game in 5 Seconds': 'http://static.wikia.nocookie.net/battle-in-5-seconds-after-meeting/images/4/41/Battle_in_5_Seconds_After_Meeting1.jpg',
       'To the Abandoned Sacred Beasts': 'http://static.tvtropes.org/pmwiki/pub/images/a21778_33416613111559620473.jpg',
-      'King\'s Game': 'http://upload.wikimedia.org/wikipedia/en/thumb/5/58/%C5%8Dsama_Game_The_Animation.png/220px-%C5%8Dsama_Game_The_Animation.png',
+      'King\'s Game': 'https://static.wikia.nocookie.net/ousama-game/images/1/18/Ousama_Game_Kigen.jpg',
       'Joker Game': 'http://static.wikia.nocookie.net/enanimanga/images/2/27/Joker_Game.jpg',
       'Noblesse: Awakening': 'http://static.wikia.nocookie.net/noblesse/images/5/5a/Noblesse_awakening_ova.png',
     };

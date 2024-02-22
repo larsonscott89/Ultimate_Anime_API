@@ -6,3 +6,24 @@
   border: none;
   cursor: pointer;
 }
+
+.anime-photo {
+  height: 400px;
+  width: 250px;
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+}
+
+.anime-name {
+  font-size: 36px;
+  margin: 0 auto;
+}
+
+h1 {
+  
+}
+
+h3 {
+
+}
