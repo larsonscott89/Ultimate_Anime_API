@@ -31,7 +31,7 @@ app.get('/api/characters', characterInfoController.getCharacter)
 
 app.get('/api/anime/:name/characters', animeNameController.getCharactersByAnime)
 
-// app.get('/api/anime/:name/characters', characterInfoController.getCharactersInfo)
+app.get('/api/search/:query', animeNameController.searchAnime)
 
 app.get('/api/genre/:name', genreController.getAnimeByGenre)
 

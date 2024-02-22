@@ -31,6 +31,97 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  submitButton.addEventListener('click', () => {
+    const searchTerm = searchBar.value.trim();
+
+    if (searchTerm) {
+      fetchAnimeOrCharacter(searchTerm);
+    }
+  });
+
+  searchBar.addEventListener('keydown', function (event) {
+    if (event.keyCode == 13) {
+      submitButton.click();
+    }
+  });
+
+  async function fetchAnimeOrCharacter(searchTerm) {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/search/${encodeURIComponent(searchTerm)}`);
+      const searchResults = response.data;
+
+      genreTypes.innerHTML = '';
+
+      if (searchResults.anime) {
+        // Display anime results
+        const animeWrapper = document.createElement('div');
+        animeWrapper.classList.add('anime-wrapper');
+
+        searchResults.anime.forEach(animeName => {
+          const animeContainer = document.createElement('div');
+          animeContainer.classList.add('anime-container');
+
+          const animeNameText = document.createElement('h1');
+          animeNameText.textContent = animeName;
+          animeNameText.classList.add('anime-name');
+
+          const animeImg = document.createElement('img');
+          animeImg.src = getAnimePhoto(animeName);
+          animeImg.classList.add('anime-photo');
+          animeImg.alt = animeName;
+
+          animeContainer.appendChild(animeNameText);
+          animeContainer.appendChild(animeImg);
+
+          animeContainer.addEventListener('click', () => {
+            fetchCharactersByAnime(animeName);
+          });
+
+          animeWrapper.appendChild(animeContainer);
+        });
+
+        genreTypes.appendChild(animeWrapper);
+      }
+
+      if (searchResults.characters) {
+        // Display character results
+        const characterWrapper = document.createElement('div');
+        characterWrapper.classList.add('character-wrapper');
+
+        searchResults.characters.forEach(character => {
+          const characterContainer = document.createElement('div');
+
+          const characterImg = document.createElement('img');
+          characterImg.src = character.photo;
+          characterImg.alt = character.name;
+          characterImg.classList.add('anime-photo');
+
+          const characterNameText = document.createElement('p');
+          characterNameText.textContent = character.name;
+          characterNameText.classList.add('anime-name');
+
+          characterContainer.appendChild(characterNameText);
+          characterContainer.appendChild(characterImg);
+
+          characterContainer.addEventListener('click', () => {
+            console.log('Fetching character info for ID:', character._id);
+            fetchCharacterInfo(character._id);
+          });
+
+          characterWrapper.appendChild(characterContainer);
+        });
+
+        genreTypes.appendChild(characterWrapper);
+      }
+    } catch (error) {
+      console.error('Error fetching anime or character:', error.message);
+      if (error.response) {
+        console.error('Response status:', error.response.status);
+        console.error('Response data:', error.response.data);
+    }
+  }
+}
+
 function fetchAnimeByGenre(genreName) {
   axios.get(`http://localhost:3001/api/genre/${genreName}`)
     .then(response => {
@@ -136,12 +227,6 @@ function fetchCharactersByAnime(animeName) {
         console.log('Character info error response:', error.response.data);
       });
   }
-
-  searchBar.addEventListener('keydown', function (event) {
-    if (event.keyCode == 13) {
-      button.click()
-    }
-  })
 
   // Add a function to get the anime photo URL
   function getAnimePhoto(animeName) {
