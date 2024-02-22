@@ -5,7 +5,6 @@ const Genre = require('../models/genre')
 db.on('error', (error) => {
   console.error('MongoDB connection error:', error);
 })
-res.cookie('yourCookieName', 'cookieValue', { domain: 'yourdomain.com', path: '/' })
 
 const main = async () => {
   const adventure = await Genre.findOne({ type: 'Adventure' })

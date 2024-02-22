@@ -1,17 +1,26 @@
+.home-button {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  margin-left: 20px;
+  padding: 0px;
+}
+
 body {
   background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/06ddd246-6c9d-43e4-a170-cf8bfa893b62/dgmugea-30055367-0986-413e-8a5b-f9e9eefcdfb2.jpg/v1/fill/w_1192,h_671,q_70,strp/anime_nature_wallpaper_hd_by_rebelsfantasyworld_dgmugea-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODk2IiwicGF0aCI6IlwvZlwvMDZkZGQyNDYtNmM5ZC00M2U0LWExNzAtY2Y4YmZhODkzYjYyXC9kZ211Z2VhLTMwMDU1MzY3LTA5ODYtNDEzZS04YTViLWY5ZTllZWZjZGZiMi5qcGciLCJ3aWR0aCI6Ijw9MTU5MiJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.sfGix1UaZSD6Nk8j3uMA1bib-O9abfSrv4EnXa3pxfw);
   background-position: inherit;
   background-size: stretch;
   background-repeat: inherit;
-} */
+} 
 
-#adventure {
+.genreButton {
   height: 70px;
-  width: 250px;
-  font-size: 50px;
-  background-color: rgb(255, 255, 255);
+  width: 150px;
+  font-size: 26px;
+  background: none;
   border: none;
   cursor: pointer;
+  color: rgb(6, 6, 97);
 }
 
 .anime-wrapper {
@@ -30,8 +39,8 @@ body {
 }
 
 .anime-photo {
-  width: 200px; 
-  height: 400px; 
+  width: 280px; 
+  height: 380px; 
 }
 
 .anime-name {
@@ -68,6 +77,11 @@ body {
   margin: 10px; 
   color: rgb(15, 18, 60);
   font-size: 36px;
+}
+
+img {
+  height: 40%;
+  width: 40%;
 }
 
 h1 {

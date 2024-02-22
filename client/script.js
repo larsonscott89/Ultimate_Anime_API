@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         genreButton.addEventListener('click', () => {
           fetchAnimeByGenre(genre.type);
         });
+        genreButton.classList.add('genreButton')
         genreTypes.appendChild(genreButton);
       });
     } catch (error) {
@@ -116,8 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Error fetching anime or character:', error.message);
       if (error.response) {
-        console.error('Response status:', error.response.status);
-        console.error('Response data:', error.response.data);
     }
   }
 }
@@ -209,7 +208,7 @@ function fetchCharactersByAnime(animeName) {
 
         const characterContainer = document.createElement('div');
         characterContainer.innerHTML = `
-          <h1>Name</h1>
+          <h2>Name</h2>
           <p>${characterInfo.name}</p>
           <h3>Summary</h3>
           <p>${characterInfo.summary}</p>
