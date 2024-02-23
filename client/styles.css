@@ -6,21 +6,50 @@
   padding: 0px;
 }
 
+#submitButton {
+  height: 30px;
+  width: 150px;
+  background: black;
+  color: rgb(244, 2, 2);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+#searchBar {
+  height: 30px;
+  width: 250px;
+  background: black;
+  color: rgb(244, 2, 2);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 body {
-  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/06ddd246-6c9d-43e4-a170-cf8bfa893b62/dgmugea-30055367-0986-413e-8a5b-f9e9eefcdfb2.jpg/v1/fill/w_1192,h_671,q_70,strp/anime_nature_wallpaper_hd_by_rebelsfantasyworld_dgmugea-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODk2IiwicGF0aCI6IlwvZlwvMDZkZGQyNDYtNmM5ZC00M2U0LWExNzAtY2Y4YmZhODkzYjYyXC9kZ211Z2VhLTMwMDU1MzY3LTA5ODYtNDEzZS04YTViLWY5ZTllZWZjZGZiMi5qcGciLCJ3aWR0aCI6Ijw9MTU5MiJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.sfGix1UaZSD6Nk8j3uMA1bib-O9abfSrv4EnXa3pxfw);
+  background-image: url(https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F01%2Fdemon-slayer-ufotable-free-download-background-info-001.jpg?cbr=1&q=90);
   background-position: inherit;
   background-size: stretch;
-  background-repeat: inherit;
+  background-repeat: round;
 } 
 
 .genreButton {
-  height: 70px;
-  width: 150px;
-  font-size: 26px;
+  height: 60px;
+  width: 160px;
   background: none;
   border: none;
+  border-radius: 45px;
   cursor: pointer;
-  color: rgb(6, 6, 97);
+  color: rgb(244, 2, 2);
+  font-size: 26px;
+  margin-top: 20px;
 }
 
 .anime-wrapper {
@@ -46,8 +75,8 @@ body {
 .anime-name {
   text-align: center;
   margin: 10px; 
-  color: rgb(15, 18, 60);
-  font-size: 26px;
+  color: rgb(244, 2, 2);
+  font-size: 30px;
   width: 250px;
   padding: 0px;
 }
@@ -75,7 +104,7 @@ body {
 .character-name {
   text-align: center;
   margin: 10px; 
-  color: rgb(15, 18, 60);
+  color: rgb(244, 2, 2);
   font-size: 36px;
 }
 
@@ -85,9 +114,24 @@ img {
 }
 
 h1 {
+  font-size: 50px;
+  display: flex;
+  position: inherit;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   
 }
 
-h3 {
+h2 {
+  font-size: 36px;
+  color: rgb(244, 2, 2);}
 
+h3 {
+  font-size: 36px;
+  color: rgb(244, 2, 2);}
+
+p {
+  font-size: 26px;
+  color: rgb(244, 2, 2);
 }
