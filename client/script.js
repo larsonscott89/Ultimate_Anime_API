@@ -1,121 +1,119 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const searchBar = document.getElementById('searchBar');
-  const submitButton = document.getElementById('submitButton');
-  const genreTypes = document.getElementById('Genre-types');
+  const searchBar = document.getElementById('searchBar')
+  const submitButton = document.getElementById('submitButton')
+  const genreTypes = document.getElementById('Genre-types')
 
   const getGenres = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:3001/api/genre');
-      const genres = response.data;
+      const response = await axios.get('http://127.0.0.1:3001/api/genre')
+      const genres = response.data
 
       genres.forEach(genre => {
-        const genreButton = document.createElement('button');
-        genreButton.textContent = genre.type;
+        const genreButton = document.createElement('button')
+        genreButton.textContent = genre.type
         genreButton.addEventListener('click', () => {
-          fetchAnimeByGenre(genre.type);
-        });
+          fetchAnimeByGenre(genre.type)
+        })
         genreButton.classList.add('genreButton')
-        genreTypes.appendChild(genreButton);
-      });
+        genreTypes.appendChild(genreButton)
+      })
     } catch (error) {
-      console.error('Error fetching genres:', error);
+      console.error('Error fetching genres:', error)
     }
-  };
+  }
 
-  getGenres();
+  getGenres()
 
   submitButton.addEventListener('click', () => {
-    const searchTerm = searchBar.value.trim();
+    const searchTerm = searchBar.value.trim()
 
     if (searchTerm) {
-      fetchAnimeOrCharacter(searchTerm);
+      fetchAnimeOrCharacter(searchTerm)
     }
-  });
+  })
 
   submitButton.addEventListener('click', () => {
-    const searchTerm = searchBar.value.trim();
+    const searchTerm = searchBar.value.trim()
 
     if (searchTerm) {
-      fetchAnimeOrCharacter(searchTerm);
+      fetchAnimeOrCharacter(searchTerm)
     }
-  });
+  })
 
   searchBar.addEventListener('keydown', function (event) {
     if (event.keyCode == 13) {
-      submitButton.click();
+      submitButton.click()
     }
-  });
+  })
 
   async function fetchAnimeOrCharacter(searchTerm) {
     try {
-      const response = await axios.get(`http://localhost:3001/api/search/${encodeURIComponent(searchTerm)}`);
-      const searchResults = response.data;
+      const response = await axios.get(`http://localhost:3001/api/search/${encodeURIComponent(searchTerm)}`)
+      const searchResults = response.data
 
-      genreTypes.innerHTML = '';
+      genreTypes.innerHTML = ''
 
       if (searchResults.anime) {
-        // Display anime results
-        const animeWrapper = document.createElement('div');
-        animeWrapper.classList.add('anime-wrapper');
+        const animeWrapper = document.createElement('div')
+        animeWrapper.classList.add('anime-wrapper')
 
         searchResults.anime.forEach(animeName => {
-          const animeContainer = document.createElement('div');
-          animeContainer.classList.add('anime-container');
+          const animeContainer = document.createElement('div')
+          animeContainer.classList.add('anime-container')
 
-          const animeNameText = document.createElement('h1');
-          animeNameText.textContent = animeName;
-          animeNameText.classList.add('anime-name');
+          const animeNameText = document.createElement('h1')
+          animeNameText.textContent = animeName
+          animeNameText.classList.add('anime-name')
 
-          const animeImg = document.createElement('img');
-          animeImg.src = getAnimePhoto(animeName);
-          animeImg.classList.add('anime-photo');
-          animeImg.alt = animeName;
+          const animeImg = document.createElement('img')
+          animeImg.src = getAnimePhoto(animeName)
+          animeImg.classList.add('anime-photo')
+          animeImg.alt = animeName
 
-          animeContainer.appendChild(animeNameText);
-          animeContainer.appendChild(animeImg);
+          animeContainer.appendChild(animeNameText)
+          animeContainer.appendChild(animeImg)
 
           animeContainer.addEventListener('click', () => {
-            fetchCharactersByAnime(animeName);
-          });
+            fetchCharactersByAnime(animeName)
+          })
 
-          animeWrapper.appendChild(animeContainer);
-        });
+          animeWrapper.appendChild(animeContainer)
+        })
 
-        genreTypes.appendChild(animeWrapper);
+        genreTypes.appendChild(animeWrapper)
       }
 
       if (searchResults.characters) {
-        // Display character results
-        const characterWrapper = document.createElement('div');
-        characterWrapper.classList.add('character-wrapper');
+        const characterWrapper = document.createElement('div')
+        characterWrapper.classList.add('character-wrapper')
 
         searchResults.characters.forEach(character => {
-          const characterContainer = document.createElement('div');
+          const characterContainer = document.createElement('div')
 
-          const characterImg = document.createElement('img');
-          characterImg.src = character.photo;
-          characterImg.alt = character.name;
-          characterImg.classList.add('anime-photo');
+          const characterImg = document.createElement('img')
+          characterImg.src = character.photo
+          characterImg.alt = character.name
+          characterImg.classList.add('anime-photo')
 
-          const characterNameText = document.createElement('p');
-          characterNameText.textContent = character.name;
-          characterNameText.classList.add('anime-name');
+          const characterNameText = document.createElement('p')
+          characterNameText.textContent = character.name
+          characterNameText.classList.add('anime-name')
 
-          characterContainer.appendChild(characterNameText);
-          characterContainer.appendChild(characterImg);
+          characterContainer.appendChild(characterNameText)
+          characterContainer.appendChild(characterImg)
 
           characterContainer.addEventListener('click', () => {
-            console.log('Fetching character info for ID:', character._id);
-            fetchCharacterInfo(character._id);
-          });
+            console.log('Fetching character info for ID:', character._id)
+            fetchCharacterInfo(character._id)
+          })
 
-          characterWrapper.appendChild(characterContainer);
-        });
+          characterWrapper.appendChild(characterContainer)
+        })
 
-        genreTypes.appendChild(characterWrapper);
+        genreTypes.appendChild(characterWrapper)
       }
     } catch (error) {
-      console.error('Error fetching anime or character:', error.message);
+      console.error('Error fetching anime or character:', error.message)
       if (error.response) {
     }
   }
@@ -124,89 +122,89 @@ document.addEventListener('DOMContentLoaded', () => {
 function fetchAnimeByGenre(genreName) {
   axios.get(`http://localhost:3001/api/genre/${genreName}`)
     .then(response => {
-      const genreDetails = response.data;
+      const genreDetails = response.data
 
-      genreTypes.innerHTML = '';
+      genreTypes.innerHTML = ''
 
-      const animeWrapper = document.createElement('div');
-      animeWrapper.classList.add('anime-wrapper');
+      const animeWrapper = document.createElement('div')
+      animeWrapper.classList.add('anime-wrapper')
 
       genreDetails.anime.forEach(animeName => {
         const animeContainer = document.createElement('div')
-        animeContainer.classList.add('anime-container');
+        animeContainer.classList.add('anime-container')
 
-        const animeNameText = document.createElement('h1');
-        animeNameText.textContent = animeName;
-        animeNameText.classList.add('anime-name');
+        const animeNameText = document.createElement('h1')
+        animeNameText.textContent = animeName
+        animeNameText.classList.add('anime-name')
 
-        const animeImg = document.createElement('img');
-        animeImg.src = getAnimePhoto(animeName);
-        animeImg.classList.add('anime-photo');
-        animeImg.alt = animeName;
+        const animeImg = document.createElement('img')
+        animeImg.src = getAnimePhoto(animeName)
+        animeImg.classList.add('anime-photo')
+        animeImg.alt = animeName
 
-        animeContainer.appendChild(animeNameText);
-        animeContainer.appendChild(animeImg);
+        animeContainer.appendChild(animeNameText)
+        animeContainer.appendChild(animeImg)
 
         animeContainer.addEventListener('click', () => {
-          fetchCharactersByAnime(animeName);
-        });
+          fetchCharactersByAnime(animeName)
+        })
 
-        animeWrapper.appendChild(animeContainer);
-      });
+        animeWrapper.appendChild(animeContainer)
+      })
 
-      genreTypes.appendChild(animeWrapper);
+      genreTypes.appendChild(animeWrapper)
     })
-    .catch(error => console.error(`Error fetching anime for ${genreName} genre:`, error));
+    .catch(error => console.error(`Error fetching anime for ${genreName} genre:`, error))
 }
 
 function fetchCharactersByAnime(animeName) {
   axios.get(`http://localhost:3001/api/anime/${encodeURIComponent(animeName)}/characters`)
     .then(response => {
-      const characters = response.data;
+      const characters = response.data
 
-      genreTypes.innerHTML = '';
+      genreTypes.innerHTML = ''
 
-      const characterWrapper = document.createElement('div');
-      characterWrapper.classList.add('character-wrapper');
+      const characterWrapper = document.createElement('div')
+      characterWrapper.classList.add('character-wrapper')
 
       characters.forEach(character => {
-        const characterContainer = document.createElement('div');
+        const characterContainer = document.createElement('div')
 
-        const characterImg = document.createElement('img');
-        characterImg.src = character.photo;
-        characterImg.alt = character.name;
-        characterImg.classList.add('anime-photo');
+        const characterImg = document.createElement('img')
+        characterImg.src = character.photo
+        characterImg.alt = character.name
+        characterImg.classList.add('anime-photo')
 
-        const characterNameText = document.createElement('p');
-        characterNameText.textContent = character.name;
-        characterNameText.classList.add('anime-name');
+        const characterNameText = document.createElement('p')
+        characterNameText.textContent = character.name
+        characterNameText.classList.add('anime-name')
 
-        characterContainer.appendChild(characterNameText);
-        characterContainer.appendChild(characterImg);
+        characterContainer.appendChild(characterNameText)
+        characterContainer.appendChild(characterImg)
 
         characterContainer.addEventListener('click', () => {
-          console.log('Fetching character info for ID:', character._id);
-          fetchCharacterInfo(character._id);
-        });
+          console.log('Fetching character info for ID:', character._id)
+          fetchCharacterInfo(character._id)
+        })
 
-        characterWrapper.appendChild(characterContainer);
-      });
+        characterWrapper.appendChild(characterContainer)
+      })
 
-      genreTypes.appendChild(characterWrapper);
+      genreTypes.appendChild(characterWrapper)
     })
-    .catch(error => console.error(`Error fetching characters for ${animeName} anime:`, error));
+    .catch(error => console.error(`Error fetching characters for ${animeName} anime:`, error))
 }
 
   function fetchCharacterInfo(characterId) {
-    console.log('Fetching character info for ID:', characterId);
+    console.log('Fetching character info for ID:', characterId)
     axios.get(`http://localhost:3001/api/characters/${characterId}`)
       .then(response => {
-        console.log('Character info response:', response.data);
+        console.log('Character info response:', response.data)
 
-        const characterInfo = response.data;
-        genreTypes.innerHTML = '';
+        const characterInfo = response.data
+        genreTypes.innerHTML = ''
 
-        const characterContainer = document.createElement('div');
+        const characterContainer = document.createElement('div')
         characterContainer.innerHTML = `
           <h2>Name</h2>
           <p>${characterInfo.name}</p>
@@ -217,14 +215,14 @@ function fetchCharactersByAnime(animeName) {
           <h3>Japanese Voice Actor</h3>
           <p>${characterInfo.japVoiceActor}</p>
           <img src="${characterInfo.characterGif}" alt="Character Gif">
-        `;
+        `
 
-        genreTypes.appendChild(characterContainer);
+        genreTypes.appendChild(characterContainer)
       })
       .catch(error => {
-        console.error(`Error fetching information for ${characterId} character:`, error);
-        console.log('Character info error response:', error.response.data);
-      });
+        console.error(`Error fetching information for ${characterId} character:`, error)
+        console.log('Character info error response:', error.response.data)
+      })
   }
 
   // Add a function to get the anime photo URL
@@ -293,7 +291,7 @@ function fetchCharactersByAnime(animeName) {
       'King\'s Game': 'https://static.wikia.nocookie.net/ousama-game/images/1/18/Ousama_Game_Kigen.jpg',
       'Joker Game': 'http://static.wikia.nocookie.net/enanimanga/images/2/27/Joker_Game.jpg',
       'Noblesse: Awakening': 'http://static.wikia.nocookie.net/noblesse/images/5/5a/Noblesse_awakening_ova.png',
-    };
-    return animePhotoMap[animeName] || 'https://placeholder.com/anime-photo';
+    }
+    return animePhotoMap[animeName] || 'https://placeholder.com/anime-photo'
 }
-});
+})

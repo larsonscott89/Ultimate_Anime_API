@@ -1,3 +1,10 @@
+body {
+  background-image: url(https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F01%2Fdemon-slayer-ufotable-free-download-background-info-001.jpg?cbr=1&q=90);
+  background-position: fixed;
+  background-size: cover;
+  background-repeat: round;
+} 
+
 .home-button {
   height: 100px;
   width: 100px;
@@ -32,13 +39,6 @@
   align-items: center;
   margin: 0 auto;
 }
-
-body {
-  background-image: url(https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F01%2Fdemon-slayer-ufotable-free-download-background-info-001.jpg?cbr=1&q=90);
-  background-position: inherit;
-  background-size: stretch;
-  background-repeat: round;
-} 
 
 .genreButton {
   height: 60px;
@@ -115,6 +115,7 @@ img {
 
 h1 {
   font-size: 50px;
+  color: rgb(0, 9, 190);
   display: flex;
   position: inherit;
   justify-content: center;
@@ -125,13 +126,15 @@ h1 {
 
 h2 {
   font-size: 36px;
-  color: rgb(244, 2, 2);}
+  color: rgb(255, 0, 0);}
 
 h3 {
   font-size: 36px;
-  color: rgb(244, 2, 2);}
+  color: rgb(244, 2, 2);
+}
 
 p {
   font-size: 26px;
+  background-color: rgba(51, 51, 51, 0.825);
   color: rgb(244, 2, 2);
 }
