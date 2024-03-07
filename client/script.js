@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const animeWrapper = document.createElement('div')
         animeWrapper.classList.add('anime-wrapper')
 
-        searchResults.anime.forEach(animeName => {
+        searchResults.anime.find(animeName => {
           const animeContainer = document.createElement('div')
           animeContainer.classList.add('anime-container')
 
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const characterWrapper = document.createElement('div')
         characterWrapper.classList.add('character-wrapper')
 
-        searchResults.characters.forEach(character => {
+        searchResults.characters.find(character => {
           const characterContainer = document.createElement('div')
 
           const characterImg = document.createElement('img')
@@ -129,7 +129,7 @@ function fetchAnimeByGenre(genreName) {
       const animeWrapper = document.createElement('div')
       animeWrapper.classList.add('anime-wrapper')
 
-      genreDetails.anime.forEach(animeName => {
+      genreDetails.anime.find(animeName => {
         const animeContainer = document.createElement('div')
         animeContainer.classList.add('anime-container')
 
@@ -167,7 +167,7 @@ function fetchCharactersByAnime(animeName) {
       const characterWrapper = document.createElement('div')
       characterWrapper.classList.add('character-wrapper')
 
-      characters.forEach(character => {
+      characters.find(character => {
         const characterContainer = document.createElement('div')
 
         const characterImg = document.createElement('img')
